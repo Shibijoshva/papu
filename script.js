@@ -20,21 +20,12 @@ const blowText = document.getElementById("blowText");
 const birthdayText = document.getElementById("birthdayText");
 const balloonBox = document.getElementById("balloons");
 
-/* ===== COUNTDOWN ===== */
-const hEl = document.getElementById("h");
-const mEl = document.getElementById("m");
-const sEl = document.getElementById("s");
-const countMsg = document.getElementById("countMsg");
-
 /* ===== MUSIC ===== */
 const bgMusic = document.getElementById("bgMusic");
 bgMusic.volume = 0.5;
 
 /* ===== STATE ===== */
 let blown = false;
-
-/* 🎂 BIRTHDAY FLAG (PERSISTENT) */
-const birthdayDone = localStorage.getItem("birthdayDone");
 
 /* ================= PAGE SWITCH ================= */
 function showPage(p) {
@@ -59,40 +50,6 @@ function showPage(p) {
     bgMusic.pause();
   }
 }
-
-/* ================= COUNTDOWN (8:10 PM) ================= */
-function startCountdown() {
-  let target = new Date();
-
-  // 🎯 NEXT 12:00 AM (MIDNIGHT)
-  target.setDate(target.getDate() + 1);
-  target.setHours(0, 0, 0, 0);
-
-  const timer = setInterval(() => {
-    const diff = target - new Date();
-
-    if (diff <= 0) {
-      clearInterval(timer);
-
-      // 🎂 Save birthday state
-      localStorage.setItem("birthdayDone", "true");
-
-      hEl.textContent = "00";
-      mEl.textContent = "00";
-      sEl.textContent = "00";
-
-      countMsg.innerHTML = "<strong>HAPPY BIRTHDAY 🎉🎂💖</strong>";
-      countNext.classList.remove("hidden");
-      return;
-    }
-
-    hEl.textContent = String(Math.floor(diff / 3600000)).padStart(2, "0");
-    mEl.textContent = String(Math.floor(diff / 60000) % 60).padStart(2, "0");
-    sEl.textContent = String(Math.floor(diff / 1000) % 60).padStart(2, "0");
-  }, 1000);
-}
-
-
 
 /* ================= EVENTS ================= */
 countNext.onclick = () => showPage(page1);
@@ -145,10 +102,4 @@ if (endBtn) {
 }
 
 /* ================= INITIAL LOAD ================= */
-if (birthdayDone === "true") {
-  // 🎉 Skip countdown forever after time
-  showPage(page1);
-} else {
-  showPage(page0);
-  startCountdown();
-}
+showPage(page0);
