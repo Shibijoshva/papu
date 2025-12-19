@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Papu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PAGE 0 : COUNTDOWN -->
+<section class="page active" id="page0">
+  <div class="count-card">
+    <h2>Countdown to Papu’s Birthday 🎂</h2>
+
+    <div class="timer">
+      <div><span id="h">00</span><small>Hours</small></div>
+      <div><span id="m">00</span><small>Minutes</small></div>
+      <div><span id="s">00</span><small>Seconds</small></div>
+    </div>
+
+    <p id="countMsg">Come back at 12:00 AM ⏰</p>
+    <button id="countNext" class="hidden">Next 🎉</button>
+  </div>
+</section>
+
+<!-- PAGE 1 -->
+<section class="page" id="page1">
+  <div class="card">
+    <h2>Is this my Papu? 🤨</h2>
+    <div class="btn-row">
+      <button id="yesBtn">Yes 😊</button>
+      <button id="noBtn" class="no">No 😞</button>
+    </div>
+    <p id="msg"></p>
+  </div>
+</section>
+
+<!-- PAGE 2 : CELEBRATION -->
+<section class="page" id="page2">
+
+  <div class="festoon">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="stars"></div>
+  <div id="balloons"></div>
+
+  <div class="cake-wrap" id="cake">
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+    <div class="cake top"></div>
+    <div class="cake mid"></div>
+    <div class="cake bottom"></div>
+  </div>
+
+  <div class="blow" id="blowText">Tap to Blow 😊</div>
+  <div class="birthday hidden" id="birthdayText">HAPPY BIRTHDAY papu  🤩</div>
+  <button class="next hidden" id="nextBtn">Next</button>
+</section>
+
+<!-- PAGE 3 : LETTER -->
+<section class="page card-page" id="page3">
+  <div class="greeting-card">
+    <h2>Happiest Birthday, Papu 🎉🎂💖</h2>
+
+<p>
+  Enna da, ivan yen friend-ku panna solli ketta, ennakku panni irukaaney nu pannadha…
+  sudden-aa thaan thonuchu 😅
+</p>
+
+<p>
+  Idhu just oru chinna thing dhaan, idhu real present illa 🎁<br>
+  I have something else for you 💝
+</p>
+
+<p>
+  Naan eppovum pola, first God-kku thanks sollanum 🙏<br>
+  En life-la ennai romba nalla purinjikitta, ippadi oru wonderful person-a kuduthadhukku 💫<br>
+  Nee eppovum en side-la irundha oru person 🤍
+</p>
+
+<p>
+  Ennala unnaku evalo problems vandhaalum, nee ennai comfort pannuva 🫂<br>
+  Ana ennala unnaku eppovum problems dhaan varudhu…<br>
+  Adhukku just <strong>“sorry”</strong> nu summa solla maaten 😔
+</p>
+
+<p>
+  Papu, romba overthink pannadha 🧠💭<br>
+  Edhu nadandhaalum pathukalaam 💪<br>
+  Unakku theriyuma, nee evalo strong person nu? 🔥<br>
+  Tension romba over-aa irukku…<br>
+  Already irukku, innum varum 😌<br>
+  Aana adhellam nenachu overthink pannadha… free-aa vidu 🌿<br>
+  <strong>Pathukalaam papu 💖</strong>
+</p>
+
+<p>
+  Nee mattum yen life-la illena, naan engayo epadiyo poiruppen 😞<br>
+  Innikku naan konjam mentally stable-aa irukken na, adhu nee dhaan karanam 🧠❤️
+</p>
+
+<p>
+  Naan evalo kashtathula irundhaalum, illa happy-aa irundhaalum,<br>
+  Nee eppovum ennai ketu, ennai console pannirukka 🤍
+</p>
+
+<p>
+  Unakku theriyuma…<br>
+  Naan eppola romba feel pannirukken 😔<br>
+  College-ku correct-aa vara mudiyala, tuition-kum correct-aa pogala…<br>
+  Un kooda time spend panni, plan pannina madhiri,<br>
+  TT-la onnaa join panni, nalla irukkanum nu ninaichen…<br>
+  Aana adhellam naan dhaan miss panniten 💔
+</p>
+
+<p>
+  Naan unna romba hope panninaen… adhayum naan dhaan break panniten 😞<br>
+  “Love panren” nu sonnadhu vera mari solla vandhuchu,<br>
+  Aana adhu vera mari pochu 😔
+</p>
+
+<p>
+  Unna maadhiri ponnu oru <strong>gem 💎</strong> nu theriyuma?<br>
+  Manasara solren 💖<br>
+  Nee eppovum happy-aa irukkanum, appadiye iruppa 😊✨
+</p>
+
+<p>
+  Papu, ennaku innum romba sollanum…<br>
+  Aana eppo venaalum, oru naal ellathaiyum solluven 🤍
+</p>
+
+<p>
+  <strong>Love you, Papu ❤️</strong><br>
+  Once again… <strong>Happy Birthday, Papu 🎂🎉💖</strong>
+</p>
+
+
+    <button class="next" id="endBtn">💖 The End</button>
+  </div>
+</section>
+
+<audio id="bgMusic">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
