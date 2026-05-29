@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+
+    background:
+    radial-gradient(circle at top left,#ff5fa2 0%,transparent 30%),
+    radial-gradient(circle at top right,#7d5fff 0%,transparent 30%),
+    linear-gradient(135deg,#170028,#32004f,#56006d,#190032);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* STARS */
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 4s infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.2;
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(2);
+    }
+}
+
+/* HEARTS */
+
+.bgHeart{
+    position:absolute;
+    bottom:-100px;
+    pointer-events:none;
+    animation:floatHeart linear forwards;
+}
+
+@keyframes floatHeart{
+
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+
+    to{
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* SCREENS */
+
+.screen{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.hidden{
+    display:none;
+}
+
+/* CARD */
+
+.card{
+
+    background:
+    rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    padding:40px;
+
+    border-radius:25px;
+
+    color:white;
+
+    text-align:center;
+
+    width:min(90%,600px);
+
+    box-shadow:
+    0 0 40px rgba(255,255,255,.1);
+}
+
+.card h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.card p{
+    margin-bottom:20px;
+}
+
+/* BUTTONS */
+
+button{
+
+    padding:14px 30px;
+
+    border:none;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    margin:10px;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.yes{
+    background:#00d26a;
+    color:white;
+}
+
+.no{
+    background:#ff3366;
+    color:white;
+}
+
+/* ENVELOPE */
+
+#envelope{
+
+    position:relative;
+
+    width:320px;
+    height:220px;
+
+    cursor:pointer;
+
+    transition:1s ease;
+}
+
+.envelope-body{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:white;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.3);
+}
+
+.envelope-front{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:#ffd6e5;
+
+    clip-path:polygon(
+    0 0,
+    50% 60%,
+    100% 0,
+    100% 100%,
+    0 100%
+    );
+}
+
+.flap{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:#ffb6d5;
+
+    clip-path:polygon(
+    0 0,
+    50% 65%,
+    100% 0
+    );
+}
+
+/* ENVELOPE HIDE */
+
+.hideEnvelope{
+
+    opacity:0;
+
+    transform:
+    scale(.7)
+    translateY(120px);
+}
+
+/* SORRY IMAGE */
+
+#sorryImage{
+
+    position:absolute;
+
+    width:450px;
+    max-width:90vw;
+
+    opacity:0;
+
+    transform:scale(.5);
+
+    transition:1s ease;
+
+    pointer-events:none;
+}
+
+.showSorry{
+
+    opacity:1 !important;
+
+    transform:scale(1) !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+
+<div id="home" class="screen">
+
+    <div class="card">
+
+        <h1>
+            Is This You Joo? 👀
+        </h1>
+
+        <p>
+            Do you want to see what's inside? 🎁
+        </p>
+
+        <button
+        class="yes"
+        onclick="startSite()">
+
+            YES 😌
+
+        </button>
+
+        <button
+        class="no"
+        onclick="showNo()">
+
+            NO 😏
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- NO SCREEN -->
+
+<div id="warn"
+class="screen hidden">
+
+    <div class="card">
+
+        <h2>
+            ⚠ HOW DARE YOU CLICK NO?!
+        </h2>
+
+        <br>
+
+        <button
+        class="yes"
+        onclick="backHome()">
+
+            Fine 😭
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ENVELOPE PAGE -->
+
+<div id="scene"
+class="screen hidden">
+
+    <div
+    id="envelope"
+    onclick="openSorry()">
+
+        <div class="envelope-body"></div>
+
+        <div class="envelope-front"></div>
+
+        <div class="flap"></div>
+
+    </div>
+
+    <img
+    src="sorry.png"
+    id="sorryImage">
+
+</div>
+
+<script>
+
+/* STARS */
+
+for(let i=0;i<120;i++){
+
+    const star =
+    document.createElement("div");
+
+    star.className =
+    "star";
+
+    star.style.left =
+    Math.random()*100+"vw";
+
+    star.style.top =
+    Math.random()*100+"vh";
+
+    star.style.animationDelay =
+    Math.random()*4+"s";
+
+    document.body.appendChild(star);
+}
+
+/* PAGES */
+
+function startSite(){
+
+    document
+    .getElementById("home")
+    .classList.add("hidden");
+
+    document
+    .getElementById("scene")
+    .classList.remove("hidden");
+}
+
+function showNo(){
+
+    document
+    .getElementById("home")
+    .classList.add("hidden");
+
+    document
+    .getElementById("warn")
+    .classList.remove("hidden");
+}
+
+function backHome(){
+
+    document
+    .getElementById("warn")
+    .classList.add("hidden");
+
+    document
+    .getElementById("home")
+    .classList.remove("hidden");
+}
+
+/* OPEN */
+
+function openSorry(){
+
+    const envelope =
+    document.getElementById("envelope");
+
+    const image =
+    document.getElementById("sorryImage");
+
+    envelope.classList.add(
+    "hideEnvelope"
+    );
+
+    setTimeout(()=>{
+
+        image.classList.add(
+        "showSorry"
+        );
+
+        heartExplosion();
+
+        confetti();
+
+    },800);
+}
+
+/* HEARTS */
+
+function heartExplosion(){
+
+    for(let i=0;i<60;i++){
+
+        const heart =
+        document.createElement("div");
+
+        heart.className =
+        "bgHeart";
+
+        heart.innerHTML =
+        Math.random()>.5
+        ? "❤️"
+        : "💖";
+
+        heart.style.left =
+        Math.random()*100+"vw";
+
+        heart.style.fontSize =
+        (20+Math.random()*30)+"px";
+
+        heart.style.animationDuration =
+        (6+Math.random()*4)+"s";
+
+        document.body
+        .appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },10000);
+    }
+}
+
+/* CONFETTI */
+
+function confetti(){
+
+    for(let i=0;i<150;i++){
+
+        const c =
+        document.createElement("div");
+
+        c.style.position =
+        "absolute";
+
+        c.style.width =
+        "8px";
+
+        c.style.height =
+        "12px";
+
+        c.style.left =
+        Math.random()*100+"vw";
+
+        c.style.top =
+        "-20px";
+
+        c.style.background =
+        `hsl(${Math.random()*360},
+        100%,60%)`;
+
+        document.body
+        .appendChild(c);
+
+        c.animate([
+
+            {
+                transform:
+                "translateY(0)"
+            },
+
+            {
+                transform:
+                `translateY(${window.innerHeight+100}px)
+                rotate(720deg)`
+            }
+
+        ],{
+
+            duration:
+            3000+
+            Math.random()*2500
+
+        });
+
+        setTimeout(()=>{
+            c.remove();
+        },6000);
+    }
+}
+
+</script>
+
+</body>
+</html>
